@@ -8,15 +8,13 @@
 
 </head>
 <body>
-     <header>
+    <main>
         <h1>Conversor de Moedas v2.0</h1>
-    </header>
-    <section>
-        <form action="conversorv2.php" method="get">
-            <label for="valor">Informe o valor para converter em dólar atual</label>
-            <input type="float" name="valor" id="idvalor">          
-            <input type="submit" value="Converter">
-        </form>
-    </section>    
+            <form action="conversorv2.php" method="get">
+                <label for="valor">Informe o valor para converter em dólar na cotação atual</label>
+                <input type="number" name="valor" id="idvalor" step="0.01">          
+                <input type="submit" value="Converter">
+            </form>
+    </main>
 </body>
 </html>
