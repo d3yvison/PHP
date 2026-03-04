@@ -23,13 +23,12 @@
         <h2>Resultado Final</h2>
         <?php
             $raizQuadrada = sqrt($numero);
+            //$raizQuadrada = $numero ** (1/2); Também funciona.
             $raizCubica = $numero ** (1/3);
             
-        print"<p>Analisando o número $numero, temos:</p>
-        <ul>
-        <li>A sua raíz quadrada é $raizQuadrada</li>
-        <li>A sua raíz cúbica é $raizCubica</li>
-        </ul>"
+        echo "<p>Analisando o <strong>número $numero</strong>, temos:";
+        echo "<ul><li>A sua raíz quadrada é <strong>" . number_format($raizQuadrada, 2, "," , ".") . "</strong></li>";
+        echo"<li>A sua raíz cúbica é <strong>" . number_format($raizCubica, 2, "," , ".") ."</strong></li></ul>";
         ?>      
     </section>            
 </body>

@@ -15,34 +15,32 @@
     ?>
     <main>
         <h1>Médias Aritméticas</h1>
-        <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="get">
+        <form action="<?= $_SERVER['PHP_SELF']?>" method="get">
             <label for="num1">1° Valor</label>
             <input type="number" name="num1" id="num1" value="<?=$num1?>">
 
             <label for="peso1">1° Peso</label>
-            <input type="number" name="peso1" id="peso1" value="<?=$peso1?>">    
+            <input type="number" name="peso1" id="peso1" min="1" value="<?=$peso1?>">    
 
             <label for="num2">2° Valor</label>
             <input type="number" name="num2" id="num2" value="<?=$num2?>">
 
             <label for="peso2">2° Peso</label>
-            <input type="number" name="peso2" id="peso2" value="<?=$peso2?>">
+            <input type="number" name="peso2" id="peso2" min="1" value="<?=$peso2?>">
 
             <input type="submit" value="Calcular Médias">
-            </form>
+        </form>
     </main>
     <section id="resultado">
         <h2>Cálculo das Médias</h2>
         <?php
             $mediaSimples = ($num1 + $num2) / 2 ;
-            $mediaPonderada = (($num1 * $peso1) + ($num2 * $peso2)) / ($peso1 + $peso2);;
+            $mediaPonderada = (($num1 * $peso1) + ($num2 * $peso2)) / ($peso1 + $peso2);
             
-        print"<p>Analisando os valores $num1 e $num2:</p>
-        <ul>
-        <li>A Média Aritmética Simples é: $mediaSimples</li>
-        <li>A Média Aritmética Ponderada com pesos $peso1 e $peso2 é: $mediaPonderada</li>
-        </ul>"
-    ?>      
+        echo "<p>Analisando os valores $num1 e $num2:" ;
+        echo "<ul><li><strong>A Média Aritmética Simples</strong> é: " . number_format($mediaSimples, 2, "," , ".") . "</li>";
+        echo"<li><strong>A Média Aritmética Ponderada</strong> com pesos $peso1 e $peso2 é: " . number_format($mediaPonderada, 2, ",",".") . "</li></ul>";
+        ?>      
     </section>    
 </body>
 </html>

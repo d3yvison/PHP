@@ -8,30 +8,29 @@
 </head>
 <body>
     <?php
-    $nasc = $_GET['nasc'] ?? 0;
-    $ano = $_GET['ano'] ?? 0;
+    $atual = date("Y");
+    $nasc = $_GET['nasc'] ?? 2000;
+    $ano = $_GET['ano'] ?? $atual;
     ?>
     <main>
         <h1>Calculando a sua idade</h1>
-        <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="get">
+        <form action="<?php $_SERVER['PHP_SELF'] ?>" method="get">
 
             <label for="nasc">Em que ano você nasceu?</label>
-            <input type="number" name="nasc" id="nasc" value="<?=$nasc?>">
+            <input type="number" name="nasc" id="nasc" min="1900" max="<?=$atual?>" value="<?=$nasc?>">
 
-            <label for="ano">Quer saber a sua idade em que ano? (Estamos atualmente em <?php echo date('Y'); ?>)</label>
-
-            <input type="number" name="ano" id="ano" value="<?=$ano?>">
+            <label for="ano">Quer saber a sua idade em que ano? (Estamos atualmente em <?$atual?>)</label>
+            <input type="number" name="ano" id="ano" min="1900" value="<?=$ano?>">
 
             <input type="submit" value="Calcular Médias">
-            </form>
+        </form>
     </main>
     <section id="resultado">
         <h2>Resultado</h2>
         <?php
             $resultado = $ano - $nasc;
-            
-        print"<p>Quem nasceu em $nasc vai ter $resultado em $ano"
-    ?>      
+        ?>
+        <p>Quem nasceu em <?=$nasc?> vai ter <strong><?=$resultado?> anos</strong> em <?= $ano?></p>      
     </section>    
 </body>
 </html>
