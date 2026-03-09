@@ -7,28 +7,39 @@
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-     <?php
+    <?php
     $preco = $_GET['preco'] ?? 0;
     $reajuste = $_GET['reajuste'] ?? 0;      
     ?>
     <main>
         <h1>Reajustador de Preços</h1>
-        <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="GET">
+        <form action="<?=$_SERVER['PHP_SELF']?>" method="GET">
             <label for="preco">Preço do Produto(R$)</label>
-            <input type="number" name="numero" id="preco" value="<?=$preco?>">
-            <label for="reajuste">Qual será o percentual de reajuste (0%)</label>
-            <input type="number" name="reajuste" id="reajuste" value="<?=$reajuste?>">
-            <input type="submit" value="Calcular">
+            <input type="number" name="preco" id="preco" min="0.10" step="0.01" value="<?=$preco?>">
+
+            <label for="reajuste">Qual será o percentual de reajuste(<strong><span id = "p">?</span>%</strong>)</label>
+            <input type="range" name="reajuste" id="reajuste" min="0" max="100" step="1" oninput="mudaValor()" value="<?=$reajuste?>">
+
+            <input type="submit" value="Calcular">            
         </form>
     </main>
-    <section id="resultado">
-        <h2>Resultado do Reajuste</h2>
-        <?php
-            $resultado = $preco + ($preco * ($reajuste / 100));
-            $resultadoSomado = $resultado + $preco;
-        print"<p>O produto que custava R\$$preco, com $reajuste% de aumento vai passar a custar R\$$resultado a partir de agora.</p>"
-        ?>      
+    <?php
+        $resultado = $preco * $reajuste / 100;
+        $resultadoSomado = $resultado + $preco;
+    ?> 
+    <section>
+        <h2>Resultado do Reajuste</h2>  
+        <p>O produto que custava R$<?=$preco?>, com <strong><?=$reajuste?>% de aumento</strong> vai passar a custar <strong>R$<?=$resultadoSomado?></strong> a partir de agora.</p>            
     </section>
+    <script>
+        // Declarações automáticas
+        mudaValor()
+
+        function mudaValor() {
+            p.innerText = reajuste.value;
+        }
+
+    </script>
     
 </body>
 </html>

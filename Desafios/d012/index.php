@@ -8,34 +8,44 @@
 </head>
 <body>
     <?php
-    $valor = $_GET['valor'] ?? 1;
-      
+    $total = $_GET['seg'] ?? 0;      
     ?>
     <main>
         <h1>Calculadora de Tempo</h1>
-        <form action="<?php echo $_SERVER['PHP_SELF'] ?>" method="get">
-            <label for="valor">Qual é o total de segundos?</label>
-            <input type="number" name="valor" id="valor" value="<?=$valor?>">
+        <form action="<?=$_SERVER['PHP_SELF'] ?>" method="get">
+            <label for="seg">Qual é o total de segundos?</label>
+            <input type="number" name="seg" id="seg" min="0" step="1" required value="<?=$total?>">
             <input type="submit" value="Calcular">
         </form>
     </main>
+    <?php
+        $sobra = $total;
+        // Total de Semanas 
+        $semana = (int)($sobra /604800);
+        $sobra = $sobra % 604800;
+        // Total de Dias
+        $dia = (int)($sobra / 86400);
+        $sobra = $sobra % 86400;
+        // Total de Horas
+        $hora = (int)($sobra / 3600);
+        $sobra = $sobra % 3600;
+        // Total de minutos
+        $minuto = (int)($sobra / 60);
+        $sobra = $sobra % 60;
+        // Total segundos
+        $segundo = $sobra;  
+    ?> 
     <section id="resultado">
         <h2>Calculando...</h2>
-        <?php
-            $semanas;
-            $dias;
-            $horas;
-            $minutos;
-            $segundos;            
-        print"<p>Analisando o valor que você digitou $segundos segundos equivalem a um total de::</p>
+        <p>Analisando o valor que você digitou, <strong><?=number_format($total, 0, ",",".")?> segundos</strong> equivalem a um total de:</p>
         <ul>
-        <li>$semanas semanas</li>
-        <li>$dias dias</li>
-        <li>$horas horas</li>
-        <li>$minutos minutos</li>
-        <li>$segundos segundos</li>
-        </ul>"
-        ?>      
+            <li><?=$semana?> semanas</li>
+            <li><?=$dia?> dias</li>
+            <li><?=$hora?> horas</li>
+            <li><?=$minuto?> minutos</li>
+            <li><?=$segundo?> segundos</li>
+        </ul>
+            
     </section>            
 </body>
 </html>
